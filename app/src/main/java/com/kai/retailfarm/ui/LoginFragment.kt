@@ -1,10 +1,11 @@
-package com.kai.retailfarm
+package com.kai.retailfarm.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.kai.retailfarm.R
 
 /**
  * A simple [Fragment] subclass.
