@@ -7,15 +7,16 @@ import com.rbddevs.splashy.Splashy
 
 class SplashActiviy : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate( savedInstanceState: Bundle? ) {
         super.onCreate(savedInstanceState)
-        Splashy(this)
-            .setLogo(R.drawable.app_icon_hd)
+
+        Splashy( this )
+            .setLogo( R.drawable.app_icon_hd )
             .setTitle( "RETAIL FARM" )
             .setTitleColor( R.color.white )
-            .setBackgroundResource(R.color.colorPrimary)
-            .setFullScreen(true)
-            .setTime(2000)
+            .setBackgroundResource( R.color.colorPrimary )
+            .setFullScreen( true )
+            .setTime( 2000 )
             .show()
 
         Splashy.onComplete( object : Splashy.OnComplete {
@@ -27,7 +28,7 @@ class SplashActiviy : AppCompatActivity() {
 
     fun startMainActivity()
     {
-        val intent = Intent( this, MainActivity::class.java)
+        val intent = Intent( this, MainActivity::class.java )
         finishAffinity()
         startActivity(intent)
     }
