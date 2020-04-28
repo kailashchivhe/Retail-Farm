@@ -1,14 +1,85 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="UTF-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.LoginFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:id="@+id/rootLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:padding="@dimen/login_padding">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/imgLargeIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/login_top_margin"
+            android:src="@drawable/app_icon"
+            android:layout_alignParentTop="true"/>
+
+        <TextView
+            android:id="@+id/status_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Retail Farm"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:layout_marginTop="@dimen/login_title_header_margin"
+            android:textSize="@dimen/login_title_textsize"
+            android:layout_below="@+id/imgLargeIcon"/>
+
+        <EditText
+            android:id="@+id/username_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/status_text"
+            android:layout_marginTop="@dimen/login_top_margin"
+            android:hint="Email"
+            android:padding="@dimen/login_padding"
+            android:inputType="textEmailAddress"/>
+
+        <EditText
+            android:id="@+id/password_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:hint="Password"
+            android:padding="@dimen/login_padding"
+            android:layout_below="@+id/username_edittext"
+            android:inputType="textVisiblePassword"/>
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:enabled="false"
+            android:text="LOGIN"
+            android:padding="@dimen/login_padding"
+            android:layout_below="@+id/password_edittext"/>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="REGISTER"
+            android:padding="@dimen/login_padding"
+            android:layout_below="@+id/button1"/>
+
+        <TextView
+            android:id="@+id/forgot_password_textview"
+            android:layout_below="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forgot Password?"
+            android:textSize="@dimen/login_title_forgot_textsize"
+            android:padding="@dimen/login_padding"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+</ScrollView>
