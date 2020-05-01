@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rootLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/login_padding">
+
+        <ImageView
+            android:id="@+id/imgLargeIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/login_top_margin"
+            android:src="@drawable/app_icon"
+            android:layout_alignParentTop="true"/>
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/imgLargeIcon"
+            android:layout_marginTop="@dimen/login_top_margin"
+            android:hint="Name"
+            android:padding="@dimen/login_padding"
+            android:inputType="textEmailAddress"/>
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/name"
+            android:hint="Email"
+            android:padding="@dimen/login_padding"
+            android:inputType="textEmailAddress"/>
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:hint="Password"
+            android:padding="@dimen/login_padding"
+            android:layout_below="@+id/email"
+            android:inputType="textVisiblePassword"/>
+
+        <EditText
+            android:id="@+id/mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:hint="Mobile"
+            android:padding="@dimen/login_padding"
+            android:layout_below="@+id/password"
+            android:inputType="textVisiblePassword"/>
+
+        <EditText
+            android:id="@+id/city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:hint="City"
+            android:padding="@dimen/login_padding"
+            android:layout_below="@+id/mobile"
+            android:inputType="textVisiblePassword"/>
+
+        <EditText
+            android:id="@+id/pincode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:hint="Pincode"
+            android:padding="@dimen/login_padding"
+            android:layout_below="@+id/city"
+            android:inputType="textVisiblePassword"/>
+
+        <EditText
+            android:id="@+id/state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:hint="State"
+            android:padding="@dimen/login_padding"
+            android:layout_below="@+id/pincode"
+            android:inputType="textVisiblePassword"/>
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:enabled="false"
+            android:text="REGISTER"
+            android:padding="@dimen/login_padding"
+            android:layout_below="@+id/state"/>
+
+    </RelativeLayout>
+</ScrollView>

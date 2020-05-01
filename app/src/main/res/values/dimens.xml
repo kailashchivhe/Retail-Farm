@@ -5,4 +5,5 @@
     <dimen name="login_title_header_margin">20dp</dimen>
     <dimen name="login_title_textsize">36sp</dimen>
     <dimen name="login_title_forgot_textsize">16sp</dimen>
+    <dimen name="home_grid_generic_padding">8dp</dimen>
 </resources>
