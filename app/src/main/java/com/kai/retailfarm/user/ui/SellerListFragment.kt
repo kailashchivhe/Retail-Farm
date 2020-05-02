@@ -3,6 +3,7 @@ package com.kai.retailfarm.user.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -71,12 +72,21 @@ class SellerListFragment : Fragment(), SellerRecyclerListListener {
 
     fun refreshDataset(list: MutableList<SellerItem> )
     {
-        if( view != null )
-        {
-            mSellerListAdapter.refreshDataset( list )
-            stopLoadingAnimations()
-            mSellerListAdapter.notifyDataSetChanged()
-        }
+        Handler().postDelayed({
+            if( view != null )
+            {
+                if( mSellerListAdapter.getCurrentDataset().isEmpty() && list.isEmpty() )
+                {
+                    stopLoadingAnimations()
+                    noDataAvailable()
+                }
+                else {
+                    mSellerListAdapter.refreshDataset(list)
+                    stopLoadingAnimations()
+                    mSellerListAdapter.notifyDataSetChanged()
+                }
+            }
+        },2000 )
     }
 
     private fun showLoadingAnimations()
@@ -89,6 +99,13 @@ class SellerListFragment : Fragment(), SellerRecyclerListListener {
     {
         recycler_view_list?.visibility = View.VISIBLE
         animation_view?.visibility = View.GONE
+    }
+
+    private fun noDataAvailable()
+    {
+        recycler_view_list?.visibility = View.INVISIBLE
+        animation_view?.visibility = View.INVISIBLE
+        status_text?.visibility = View.VISIBLE
     }
 
     override fun onItemClick(sellerItem: SellerItem) {

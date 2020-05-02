@@ -32,6 +32,11 @@ class SellerListAdapter( private var mSellerList: MutableList<SellerItem>, priva
         mSellerList = list
     }
 
+    fun getCurrentDataset():MutableList<SellerItem>
+    {
+        return mSellerList
+    }
+
     class SellerViewHolder( itemView: View) : RecyclerView.ViewHolder( itemView )
     {
         @SuppressLint("SetTextI18n")
