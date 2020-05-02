@@ -29,5 +29,13 @@ class ValidationUtility {
         fun nameValidation( name: String ):Boolean{
             return true
         }
+
+        fun priceValidation( name: String ):Boolean{
+            return true
+        }
+
+        fun unitValidation( name: String ):Boolean{
+            return true
+        }
     }
 }

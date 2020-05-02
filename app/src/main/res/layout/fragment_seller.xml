@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rootLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/login_padding">
+
+        <ImageView
+            android:id="@+id/imgLargeIcon"
+            android:transitionName="seller_icon"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/login_top_margin"
+            android:src="@drawable/sell_icon_hd"
+            android:layout_alignParentTop="true"/>
+
+        <TextView
+            android:id="@+id/textview1"
+            android:layout_below="@+id/imgLargeIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select your area : "
+            android:textSize="@dimen/login_title_forgot_textsize"
+            android:layout_marginTop="@dimen/login_top_margin"/>
+
+        <Spinner
+            android:id="@+id/area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/textview1"
+            android:padding="@dimen/login_padding"/>
+
+        <TextView
+            android:id="@+id/textview2"
+            android:layout_below="@+id/area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select vegetable : "
+            android:textSize="@dimen/login_title_forgot_textsize"/>
+
+        <Spinner
+            android:id="@+id/item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/textview2"
+            android:padding="@dimen/login_padding"/>
+
+        <EditText
+            android:id="@+id/price_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/item"
+            android:hint="Enter price per unit"
+            android:padding="@dimen/login_padding"/>
+
+        <EditText
+            android:id="@+id/units_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/price_edittext"
+            android:hint="Enter units available"
+            android:padding="@dimen/login_padding"/>
+
+        <Button
+            android:id="@+id/seller_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:enabled="false"
+            android:text="Publish AD"
+            android:padding="@dimen/login_padding"
+            android:layout_below="@+id/units_edittext"/>
+    </RelativeLayout>
+</ScrollView>

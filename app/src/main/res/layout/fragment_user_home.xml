@@ -57,6 +57,7 @@
                 <ImageView
                     android:id="@+id/cardView1_imageview"
                     android:layout_width="match_parent"
+                    android:transitionName="buyer_icon"
                     android:layout_height="60dp"
                     android:src="@drawable/buy_icon" />
 
@@ -97,6 +98,7 @@
                 <ImageView
                     android:id="@+id/cardView2_imageview"
                     android:layout_width="match_parent"
+                    android:transitionName="seller_icon"
                     android:layout_height="60dp"
                     android:src="@drawable/sell_icon" />
 

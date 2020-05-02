@@ -6,6 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.FragmentNavigator
 
 import com.kai.retailfarm.R
 import com.kai.retailfarm.firebase.FirebaseUtility
@@ -28,10 +32,14 @@ class UserHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         cardView1.setOnClickListener {
-
+            Navigation.findNavController(it).navigate( R.id.action_userHomeFragment_to_buyerFragment,null,null, FragmentNavigator.Extras.Builder()
+                .addSharedElement(cardView1_imageview, ViewCompat.getTransitionName(cardView1_imageview)!!)
+                .build() )
         }
         cardView2.setOnClickListener {
-
+            Navigation.findNavController(it).navigate( R.id.action_userHomeFragment_to_sellerFragment,null,null, FragmentNavigator.Extras.Builder()
+                .addSharedElement(cardView2_imageview, ViewCompat.getTransitionName(cardView2_imageview)!!)
+                .build() )
         }
     }
 

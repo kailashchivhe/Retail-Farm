@@ -16,7 +16,7 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_left" />
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_loginFragment_to_userHomeFragment"
             app:enterAnim="@anim/slide_in_right"
@@ -56,5 +56,30 @@
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@+id/userHomeFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_userHomeFragment_to_buyerFragment"
+            app:destination="@id/buyerFragment" />
+        <action
+            android:id="@+id/action_userHomeFragment_to_sellerFragment"
+            app:destination="@id/sellerFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/buyerFragment"
+        android:name="com.kai.retailfarm.user.ui.BuyerFragment"
+        android:label="fragment_buyer"
+        tools:layout="@layout/fragment_buyer" >
+        <action
+            android:id="@+id/action_buyerFragment_to_sellerListFragment"
+            app:destination="@id/sellerListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sellerFragment"
+        android:name="com.kai.retailfarm.user.ui.SellerFragment"
+        android:label="fragment_seller"
+        tools:layout="@layout/fragment_seller" />
+    <fragment
+        android:id="@+id/sellerListFragment"
+        android:name="com.kai.retailfarm.user.ui.SellerListFragment"
+        android:label="fragment_seller_list"
+        tools:layout="@layout/fragment_seller_list" />
 </navigation>
