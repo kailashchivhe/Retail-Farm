@@ -175,10 +175,7 @@ class SellerFragment : Fragment() {
 
     private fun shouldEnableSellerButton()
     {
-        if( mbPriceValid && mbUnitValid )
-        {
-            seller_button.isEnabled = true
-        }
+        seller_button.isEnabled = mbPriceValid && mbUnitValid
     }
 
     private fun showLoadingAnimations()

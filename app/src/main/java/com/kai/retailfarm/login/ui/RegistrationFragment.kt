@@ -209,6 +209,10 @@ class RegistrationFragment : Fragment() {
             )
             button1.isEnabled = true
         }
+        else
+        {
+            button1.isEnabled = false
+        }
     }
 
     private fun getUserDetails() {

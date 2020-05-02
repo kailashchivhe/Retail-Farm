@@ -91,10 +91,7 @@ class LoginFragment : Fragment() {
 
     private fun shouldEnableLoginButton()
     {
-        if( mbEmailValid && mbPasswordValid  )
-        {
-            button1.isEnabled = true
-        }
+        button1.isEnabled = mbEmailValid && mbPasswordValid
     }
 
     private fun setActionBarTitle(){
