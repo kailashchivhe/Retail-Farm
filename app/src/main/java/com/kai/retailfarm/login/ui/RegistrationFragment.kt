@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.navigation.Navigation
@@ -20,6 +21,7 @@ import com.kai.retailfarm.user.data.User
 import com.kai.retailfarm.login.listeners.LoginResultListener
 import com.kai.retailfarm.login.utility.ValidationUtility
 import com.kai.retailfarm.user.listeners.UserDetailsRecordInsertedListener
+import kotlinx.android.synthetic.main.fragment_login.view.*
 import kotlinx.android.synthetic.main.fragment_registration.*
 
 class RegistrationFragment : Fragment() {
@@ -153,12 +155,18 @@ class RegistrationFragment : Fragment() {
         })
 
         button1.setOnClickListener {
+            showLoadingAnimations()
             FirebaseUtility.register( mUser, object: LoginResultListener{
                 override fun loginResultReceived(bSuccess: Boolean) {
                     if( bSuccess ) {
-                        FirebaseUtility.createUserRecord(mUser,  object : UserDetailsRecordInsertedListener{
-                            override fun onRecordInsertedListener(bSuccess: Boolean) {
-                                Navigation.findNavController(it).navigate(R.id.action_registrationFragment_to_userHomeFragment)
+                        FirebaseUtility.createUserRecord(mUser,  object : LoginResultListener{
+                            override fun loginResultReceived(bSuccess: Boolean) {
+                                if( bSuccess ) {
+                                    Navigation.findNavController(it).navigate(R.id.action_registrationFragment_to_userHomeFragment)
+                                }
+                                else{
+                                    Toast.makeText( requireContext(), "Registration Failed", Toast.LENGTH_SHORT ).show()
+                                }
                             }
                         })
                     }
@@ -172,9 +180,16 @@ class RegistrationFragment : Fragment() {
         activity.supportActionBar?.title = "Registration"
     }
 
+    private fun showLoadingAnimations()
+    {
+        view?.imgLargeIcon?.visibility = View.INVISIBLE
+        view?.animation_view?.visibility = View.VISIBLE
+    }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if( requestCode == LOCATION_PERMISSION_REQUEST_CODE )
+        if( requestCode == LOCATION_PERMISSION_REQUEST_CODE && permissions.contains( Manifest.permission.ACCESS_COARSE_LOCATION )
+            && permissions.contains( Manifest.permission.ACCESS_FINE_LOCATION ) )
         {
             getUserDetails()
         }

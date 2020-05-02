@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import com.kai.retailfarm.R
@@ -36,11 +37,16 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         button1.setOnClickListener {
+            showLoadingAnimations()
             FirebaseUtility.login( view.username_edittext.text.toString(), view.password_edittext.text.toString(), object : LoginResultListener {
                 override fun loginResultReceived( bSuccess: Boolean ) {
                     if( bSuccess )
                     {
                         Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_userHomeFragment)
+                    }
+                    else
+                    {
+                        Toast.makeText( requireContext(), "login Failed", Toast.LENGTH_SHORT ).show()
                     }
                 }
             } )
@@ -79,6 +85,12 @@ class LoginFragment : Fragment() {
         })
     }
 
+    private fun showLoadingAnimations()
+    {
+        view?.imgLargeIcon?.visibility = View.INVISIBLE
+        view?.animation_view?.visibility = View.VISIBLE
+    }
+
     private fun shouldEnableLoginButton()
     {
         if( mbEmailValid && mbPasswordValid  )
@@ -86,6 +98,7 @@ class LoginFragment : Fragment() {
             button1.isEnabled = true
         }
     }
+
     private fun setActionBarTitle(){
         val activity = activity as AppCompatActivity
         activity.supportActionBar?.title = "Login"

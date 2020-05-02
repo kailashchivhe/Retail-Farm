@@ -29,10 +29,10 @@ class FirebaseUtility{
             }
         }
 
-        fun createUserRecord( user: User, userDetailsRecordInsertedListener: UserDetailsRecordInsertedListener ){
+        fun createUserRecord( user: User, loginResultListener: LoginResultListener ){
             FirebaseDatabase.getInstance().getReference("users" ).child( FirebaseAuth.getInstance().currentUser!!.uid )
                 .setValue( user ).addOnCompleteListener {
-                    userDetailsRecordInsertedListener.onRecordInsertedListener( it.isSuccessful )
+                    loginResultListener.loginResultReceived( it.isSuccessful )
                 }
         }
 
