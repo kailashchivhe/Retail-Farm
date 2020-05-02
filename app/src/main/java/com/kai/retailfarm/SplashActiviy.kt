@@ -16,7 +16,7 @@ class SplashActivity : AppCompatActivity() {
             .setTitleColor( R.color.white )
             .setBackgroundResource( R.color.colorPrimary )
             .setFullScreen( true )
-            .setTime( 2000 )
+            .setTime( 1500 )
             .show()
 
         Splashy.onComplete( object : Splashy.OnComplete {

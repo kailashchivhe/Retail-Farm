@@ -45,7 +45,7 @@ class SellerListAdapter( private var mSellerList: MutableList<SellerItem>, priva
             header_text.text = " ${sellerItem.itemName}  ₹${ sellerItem.itemPrice }/kg"
             sub_text.text = " Quantity : ${sellerItem.itemUnits} kgs "
             sub_text2.text = " Seller : ${sellerItem.sellerName} "
-            val drawable = TextDrawable.builder().buildRound( sellerItem.itemName[0].toString() , getColor( context ) )
+            val drawable = TextDrawable.builder().buildRound( sellerItem.sellerName[0].toString().toUpperCase() , getColor( context ) )
             imageview.setImageDrawable(drawable)
             cardView.setOnClickListener {
                 listener(sellerItem)

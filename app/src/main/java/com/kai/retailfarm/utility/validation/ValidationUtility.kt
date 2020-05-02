@@ -60,7 +60,8 @@ class ValidationUtility {
         }
 
         fun priceValidation( price: String ):Boolean{
-            if( Integer.parseInt( price) > 0 )
+            val pattern = Pattern.compile("^[0-9]+$")
+            if( pattern.matcher(price).matches() )
             {
                 return true
             }
@@ -68,7 +69,8 @@ class ValidationUtility {
         }
 
         fun unitValidation( unit: String ):Boolean{
-            if( Integer.parseInt( unit) > 0 )
+            val pattern = Pattern.compile("^[0-9]+$")
+            if( pattern.matcher(unit).matches() )
             {
                 return true
             }
