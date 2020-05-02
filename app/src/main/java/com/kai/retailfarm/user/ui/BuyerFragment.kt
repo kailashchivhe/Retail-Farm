@@ -16,7 +16,7 @@ class BuyerFragment : Fragment(){
 
     companion object{
         private val items = arrayOf("Potato", "Onion", "Tomato")
-        private val areas = arrayOf("Pune", "Mumbai","Nashik")
+        private val areas = arrayOf("Pune", "Mumbai")
     }
 
     private val  itemSpinnerListner = object : AdapterView.OnItemSelectedListener{

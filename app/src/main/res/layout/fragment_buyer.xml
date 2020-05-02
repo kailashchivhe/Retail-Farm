@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:id="@+id/rootLayout"
@@ -17,6 +18,17 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/login_top_margin"
             android:src="@drawable/buy_icon_hd"
+            android:layout_alignParentTop="true"/>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:lottie_fileName="loading_animation.json"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true"
+            android:layout_above="@id/textview1"
             android:layout_alignParentTop="true"/>
 
         <TextView

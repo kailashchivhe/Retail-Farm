@@ -1,15 +1,12 @@
 package com.kai.retailfarm.firebase
 
-import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.kai.retailfarm.user.data.User
 import com.kai.retailfarm.login.listeners.LoginResultListener
+import com.kai.retailfarm.user.data.SellerItem
+import com.kai.retailfarm.user.listeners.SellerListListener
 import com.kai.retailfarm.user.listeners.UserDetailsListner
-import com.kai.retailfarm.user.listeners.UserDetailsRecordInsertedListener
 
 class FirebaseUtility{
     companion object{
@@ -59,6 +56,34 @@ class FirebaseUtility{
             })
         }
 
+        fun getSellersList(sellerListListener: SellerListListener, area: String){
+            FirebaseDatabase.getInstance().getReference( "sellers" ).addValueEventListener( object : ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {}
 
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val mutableList = mutableListOf<SellerItem>()
+                    for( item in dataSnapshot.children ){
+                        val sellerItem = SellerItem( dataSnapshot.child("itemName").value as String,
+                            dataSnapshot.child("itemPrice").value as String,
+                            dataSnapshot.child("itemUnits").value as String,
+                            dataSnapshot.child("sellerID").value as String,
+                            dataSnapshot.child("sellerName").value as String,
+                            dataSnapshot.child("sellerContact").value as String,
+                            dataSnapshot.child( "sellerArea" ).value as String )
+                        if( sellerItem.sellerArea.equals( area,true) )
+                        {
+                            mutableList.add( sellerItem )
+                        }
+                    }
+                    sellerListListener.onSellersListReceivedListener( mutableList )
+                }
+            })
+        }
+
+        fun addSellerRequest( sellerItem: SellerItem, resultListener: LoginResultListener){
+            FirebaseDatabase.getInstance().getReference("sellers" ).push().setValue( sellerItem ).addOnCompleteListener {
+                resultListener.loginResultReceived( it.isSuccessful )
+            }
+        }
     }
 }

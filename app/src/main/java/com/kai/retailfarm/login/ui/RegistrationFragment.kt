@@ -7,7 +7,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -21,7 +20,6 @@ import com.kai.retailfarm.location.LocationUtility
 import com.kai.retailfarm.user.data.User
 import com.kai.retailfarm.login.listeners.LoginResultListener
 import com.kai.retailfarm.login.utility.ValidationUtility
-import com.kai.retailfarm.user.listeners.UserDetailsRecordInsertedListener
 import kotlinx.android.synthetic.main.fragment_login.view.*
 import kotlinx.android.synthetic.main.fragment_registration.*
 

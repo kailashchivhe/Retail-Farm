@@ -1,6 +1,7 @@
 package com.kai.retailfarm.user.ui
 
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.transition.TransitionInflater
@@ -10,10 +11,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.navigation.Navigation
+import com.google.firebase.auth.FirebaseAuth
 
 import com.kai.retailfarm.R
+import com.kai.retailfarm.firebase.FirebaseUtility
+import com.kai.retailfarm.login.listeners.LoginResultListener
 import com.kai.retailfarm.login.utility.ValidationUtility
-import kotlinx.android.synthetic.main.fragment_buyer.*
+import com.kai.retailfarm.user.data.SellerItem
+import com.kai.retailfarm.user.data.User
+import com.kai.retailfarm.user.listeners.UserDetailsListner
 import kotlinx.android.synthetic.main.fragment_buyer.area
 import kotlinx.android.synthetic.main.fragment_buyer.item
 import kotlinx.android.synthetic.main.fragment_seller.*
@@ -23,11 +31,12 @@ class SellerFragment : Fragment() {
 
     companion object{
         private val items = arrayOf("Potato", "Onion", "Tomato")
-        private val areas = arrayOf("Pune", "Mumbai", "Nashik")
+        private val areas = arrayOf("Pune", "Mumbai")
     }
 
     var mbPriceValid = false
     var mbUnitValid = false
+    var sellerItem = SellerItem( "Potato", "0", "0", "", "", "", "" )
 
     private val  itemSpinnerListner = object : AdapterView.OnItemSelectedListener{
         override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -36,13 +45,13 @@ class SellerFragment : Fragment() {
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
             when(position){
                 0->{
-
+                    sellerItem.itemName = "Potato"
                 }
                 1->{
-
+                    sellerItem.itemName = "Onion"
                 }
                 2->{
-
+                    sellerItem.itemName = "Tomato"
                 }
             }
         }
@@ -56,10 +65,10 @@ class SellerFragment : Fragment() {
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
             when(position){
                 0->{
-
+                    sellerItem.sellerArea = "Pune"
                 }
                 1->{
-
+                    sellerItem.sellerArea = "Mumbai"
                 }
             }
         }
@@ -102,6 +111,10 @@ class SellerFragment : Fragment() {
         price_edittext.addTextChangedListener( object: TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 mbPriceValid = ValidationUtility.priceValidation( s.toString() )
+                if( mbPriceValid )
+                {
+                    sellerItem.itemPrice = s.toString()
+                }
                 shouldEnableSellerButton()
             }
 
@@ -115,7 +128,11 @@ class SellerFragment : Fragment() {
 
         units_edittext.addTextChangedListener( object: TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                mbPriceValid = ValidationUtility.unitValidation( s.toString() )
+                mbUnitValid = ValidationUtility.unitValidation( s.toString() )
+                if( mbUnitValid )
+                {
+                    sellerItem.itemUnits = s.toString()
+                }
                 shouldEnableSellerButton()
             }
 
@@ -128,7 +145,29 @@ class SellerFragment : Fragment() {
         })
 
         seller_button.setOnClickListener {
-
+            showLoadingAnimations()
+            FirebaseUtility.getUserInfo( object : UserDetailsListner{
+                override fun onUserDetailsReceived(user: User) {
+                    sellerItem.sellerName = user.name
+                    sellerItem.sellerContact = user.mobile
+                    sellerItem.sellerID = FirebaseAuth.getInstance().currentUser!!.uid
+                    FirebaseUtility.addSellerRequest( sellerItem, object : LoginResultListener{
+                        override fun loginResultReceived(bSuccess: Boolean) {
+                            if( bSuccess )
+                            {
+                                showSuccessAnimations()
+                                Handler().postDelayed({
+                                    Navigation.findNavController( requireView() ).popBackStack()
+                                }, 2000 )
+                            }
+                            else
+                            {
+                                Toast.makeText( requireContext(), "Failed", Toast.LENGTH_SHORT ).show()
+                            }
+                        }
+                    })
+                }
+            })
         }
     }
 
@@ -138,5 +177,17 @@ class SellerFragment : Fragment() {
         {
             seller_button.isEnabled = true
         }
+    }
+
+    private fun showLoadingAnimations()
+    {
+        seller_imgLargeIcon?.visibility = View.INVISIBLE
+        loading_animation_view?.visibility = View.VISIBLE
+    }
+
+    private fun showSuccessAnimations()
+    {
+        loading_animation_view?.visibility = View.INVISIBLE
+        success_animation_view?.visibility = View.VISIBLE
     }
 }

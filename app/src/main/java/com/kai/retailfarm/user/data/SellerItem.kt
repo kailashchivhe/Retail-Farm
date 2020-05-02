@@ -5,4 +5,5 @@ data class SellerItem( var itemName:String,
                        var itemUnits: String,
                        var sellerID: String,
                        var sellerName: String,
-                       var sellerContact: String )
+                       var sellerContact: String,
+                       var sellerArea: String )
