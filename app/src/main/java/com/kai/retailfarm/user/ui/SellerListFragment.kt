@@ -33,7 +33,6 @@ class SellerListFragment : Fragment(), SellerRecyclerListListener {
         super.onCreate(savedInstanceState)
         mItem = arguments?.getString( "itemName", "" )
         mArea = arguments?.getString( "areaName", "" )
-        setActionBarTitle()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -48,6 +47,8 @@ class SellerListFragment : Fragment(), SellerRecyclerListListener {
         }
 
         mRecycleListView.adapter = mSellerListAdapter
+
+        setActionBarTitle()
 
         return view
     }
