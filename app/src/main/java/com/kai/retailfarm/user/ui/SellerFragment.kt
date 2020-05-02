@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
 
@@ -77,6 +78,7 @@ class SellerFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setActionBarTitle()
         sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
     }
 
@@ -189,5 +191,10 @@ class SellerFragment : Fragment() {
     {
         loading_animation_view?.visibility = View.INVISIBLE
         success_animation_view?.visibility = View.VISIBLE
+    }
+
+    private fun setActionBarTitle(){
+        val activity = activity as AppCompatActivity
+        activity.supportActionBar?.title = "Sell"
     }
 }

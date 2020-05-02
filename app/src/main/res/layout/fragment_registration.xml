@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/name"
-            android:hint="Email"
+            android:hint="Email eg. kchivhe@gmail.com"
             android:padding="@dimen/login_padding"
             android:inputType="textEmailAddress"/>
 
@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:hint="Password"
+            android:hint="Password (atleast 6 characters)"
             android:padding="@dimen/login_padding"
             android:layout_below="@+id/email"
             android:inputType="textVisiblePassword"/>

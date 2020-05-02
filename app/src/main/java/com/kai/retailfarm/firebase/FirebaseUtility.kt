@@ -56,21 +56,21 @@ class FirebaseUtility{
             })
         }
 
-        fun getSellersList(sellerListListener: SellerListListener, area: String){
+        fun getSellersList(sellerListListener: SellerListListener, itemName: String, area: String){
             FirebaseDatabase.getInstance().getReference( "sellers" ).addValueEventListener( object : ValueEventListener{
                 override fun onCancelled(p0: DatabaseError) {}
 
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val mutableList = mutableListOf<SellerItem>()
                     for( item in dataSnapshot.children ){
-                        val sellerItem = SellerItem( dataSnapshot.child("itemName").value as String,
-                            dataSnapshot.child("itemPrice").value as String,
-                            dataSnapshot.child("itemUnits").value as String,
-                            dataSnapshot.child("sellerID").value as String,
-                            dataSnapshot.child("sellerName").value as String,
-                            dataSnapshot.child("sellerContact").value as String,
-                            dataSnapshot.child( "sellerArea" ).value as String )
-                        if( sellerItem.sellerArea.equals( area,true) )
+                        val sellerItem = SellerItem( item.child("itemName").value as String,
+                            item.child("itemPrice").value as String,
+                            item.child("itemUnits").value as String,
+                            item.child("sellerID").value as String,
+                            item.child("sellerName").value as String,
+                            item.child("sellerContact").value as String,
+                            item.child( "sellerArea" ).value as String )
+                        if( sellerItem.sellerArea.equals( area,true) && sellerItem.itemName.equals( itemName, true))
                         {
                             mutableList.add( sellerItem )
                         }

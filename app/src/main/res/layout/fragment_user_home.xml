@@ -37,6 +37,7 @@
         android:layout_below="@+id/welcome"/>
 
     <LinearLayout
+        android:id="@+id/buy_sell_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/login_padding"
@@ -123,4 +124,12 @@
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Logout"
+        android:padding="@dimen/login_padding"
+        android:layout_below="@+id/buy_sell_container" />
 </RelativeLayout>

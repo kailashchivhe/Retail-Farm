@@ -41,6 +41,10 @@ class UserHomeFragment : Fragment() {
                 .addSharedElement(cardView2_imageview, ViewCompat.getTransitionName(cardView2_imageview)!!)
                 .build() )
         }
+        logout.setOnClickListener {
+            FirebaseUtility.logout()
+            Navigation.findNavController( it ).navigate( R.id.action_userHomeFragment_to_loginFragment )
+        }
     }
 
     fun setUserName( user: User )
