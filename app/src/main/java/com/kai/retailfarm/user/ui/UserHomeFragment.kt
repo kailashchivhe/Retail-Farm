@@ -7,12 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
-import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.FragmentNavigator
 
 import com.kai.retailfarm.R
-import com.kai.retailfarm.firebase.FirebaseUtility
+import com.kai.retailfarm.utility.firebase.FirebaseUtility
 import com.kai.retailfarm.user.data.User
 import com.kai.retailfarm.user.listeners.UserDetailsListner
 import kotlinx.android.synthetic.main.fragment_user_home.*

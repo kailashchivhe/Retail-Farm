@@ -17,9 +17,9 @@ import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
 
 import com.kai.retailfarm.R
-import com.kai.retailfarm.firebase.FirebaseUtility
-import com.kai.retailfarm.login.listeners.LoginResultListener
-import com.kai.retailfarm.login.utility.ValidationUtility
+import com.kai.retailfarm.utility.firebase.FirebaseUtility
+import com.kai.retailfarm.login.listeners.FirebaseSuccessListener
+import com.kai.retailfarm.utility.validation.ValidationUtility
 import com.kai.retailfarm.user.data.SellerItem
 import com.kai.retailfarm.user.data.User
 import com.kai.retailfarm.user.listeners.UserDetailsListner
@@ -153,7 +153,7 @@ class SellerFragment : Fragment() {
                     sellerItem.sellerName = user.name
                     sellerItem.sellerContact = user.mobile
                     sellerItem.sellerID = FirebaseAuth.getInstance().currentUser!!.uid
-                    FirebaseUtility.addSellerRequest( sellerItem, object : LoginResultListener{
+                    FirebaseUtility.addSellerRequest( sellerItem, object : FirebaseSuccessListener{
                         override fun loginResultReceived(bSuccess: Boolean) {
                             if( bSuccess )
                             {

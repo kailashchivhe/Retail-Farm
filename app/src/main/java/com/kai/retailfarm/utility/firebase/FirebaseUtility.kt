@@ -1,18 +1,18 @@
-package com.kai.retailfarm.firebase
+package com.kai.retailfarm.utility.firebase
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.kai.retailfarm.user.data.User
-import com.kai.retailfarm.login.listeners.LoginResultListener
+import com.kai.retailfarm.login.listeners.FirebaseSuccessListener
 import com.kai.retailfarm.user.data.SellerItem
 import com.kai.retailfarm.user.listeners.SellerListListener
 import com.kai.retailfarm.user.listeners.UserDetailsListner
 
 class FirebaseUtility{
     companion object{
-        fun login(userName: String, password:String, loginResultListener: LoginResultListener){
+        fun login(userName: String, password:String, firebaseSuccessListener: FirebaseSuccessListener){
             FirebaseAuth.getInstance().signInWithEmailAndPassword(userName,password).addOnCompleteListener {
-                loginResultListener.loginResultReceived( it.isSuccessful )
+                firebaseSuccessListener.loginResultReceived( it.isSuccessful )
             }
         }
 
@@ -20,16 +20,16 @@ class FirebaseUtility{
             FirebaseAuth.getInstance().signOut()
         }
 
-        fun register(user: User, loginResultListener: LoginResultListener ){
+        fun register(user: User, firebaseSuccessListener: FirebaseSuccessListener ){
             FirebaseAuth.getInstance().createUserWithEmailAndPassword( user.email, user.password ).addOnCompleteListener {
-                loginResultListener.loginResultReceived( it.isSuccessful )
+                firebaseSuccessListener.loginResultReceived( it.isSuccessful )
             }
         }
 
-        fun createUserRecord( user: User, loginResultListener: LoginResultListener ){
+        fun createUserRecord(user: User, firebaseSuccessListener: FirebaseSuccessListener ){
             FirebaseDatabase.getInstance().getReference("users" ).child( FirebaseAuth.getInstance().currentUser!!.uid )
                 .setValue( user ).addOnCompleteListener {
-                    loginResultListener.loginResultReceived( it.isSuccessful )
+                    firebaseSuccessListener.loginResultReceived( it.isSuccessful )
                 }
         }
 
@@ -80,7 +80,7 @@ class FirebaseUtility{
             })
         }
 
-        fun addSellerRequest( sellerItem: SellerItem, resultListener: LoginResultListener){
+        fun addSellerRequest( sellerItem: SellerItem, resultListener: FirebaseSuccessListener){
             FirebaseDatabase.getInstance().getReference("sellers" ).push().setValue( sellerItem ).addOnCompleteListener {
                 resultListener.loginResultReceived( it.isSuccessful )
             }

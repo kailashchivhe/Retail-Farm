@@ -1,4 +1,4 @@
-package com.kai.retailfarm.location
+package com.kai.retailfarm.utility.location
 
 import android.Manifest
 import android.content.Context

@@ -15,11 +15,11 @@ import androidx.core.app.ActivityCompat
 import androidx.navigation.Navigation
 
 import com.kai.retailfarm.R
-import com.kai.retailfarm.firebase.FirebaseUtility
-import com.kai.retailfarm.location.LocationUtility
+import com.kai.retailfarm.utility.firebase.FirebaseUtility
+import com.kai.retailfarm.utility.location.LocationUtility
 import com.kai.retailfarm.user.data.User
-import com.kai.retailfarm.login.listeners.LoginResultListener
-import com.kai.retailfarm.login.utility.ValidationUtility
+import com.kai.retailfarm.login.listeners.FirebaseSuccessListener
+import com.kai.retailfarm.utility.validation.ValidationUtility
 import kotlinx.android.synthetic.main.fragment_login.view.*
 import kotlinx.android.synthetic.main.fragment_registration.*
 
@@ -155,10 +155,10 @@ class RegistrationFragment : Fragment() {
 
         button1.setOnClickListener {
             showLoadingAnimations()
-            FirebaseUtility.register( mUser, object: LoginResultListener{
+            FirebaseUtility.register( mUser, object: FirebaseSuccessListener{
                 override fun loginResultReceived(bSuccess: Boolean) {
                     if( bSuccess ) {
-                        FirebaseUtility.createUserRecord(mUser,  object : LoginResultListener{
+                        FirebaseUtility.createUserRecord(mUser,  object : FirebaseSuccessListener{
                             override fun loginResultReceived(bSuccess: Boolean) {
                                 if( bSuccess ) {
                                     Navigation.findNavController(it).navigate(R.id.action_registrationFragment_to_userHomeFragment)

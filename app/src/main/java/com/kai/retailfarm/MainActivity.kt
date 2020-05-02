@@ -3,7 +3,7 @@ package com.kai.retailfarm
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.Navigation
-import com.kai.retailfarm.firebase.FirebaseUtility
+import com.kai.retailfarm.utility.firebase.FirebaseUtility
 
 class MainActivity : AppCompatActivity() {
 

@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.kai.retailfarm.R
-import com.kai.retailfarm.firebase.FirebaseUtility
+import com.kai.retailfarm.utility.firebase.FirebaseUtility
 import com.kai.retailfarm.user.adapter.SellerListAdapter
 import com.kai.retailfarm.user.data.SellerItem
 import com.kai.retailfarm.user.listeners.SellerListListener

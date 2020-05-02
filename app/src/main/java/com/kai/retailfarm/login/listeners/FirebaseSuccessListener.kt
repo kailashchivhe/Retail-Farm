@@ -1,5 +1,5 @@
 package com.kai.retailfarm.login.listeners
 
-interface LoginResultListener {
+interface FirebaseSuccessListener {
     fun loginResultReceived( bSuccess: Boolean )
 }

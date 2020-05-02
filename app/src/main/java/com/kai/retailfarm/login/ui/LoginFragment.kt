@@ -11,15 +11,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import com.kai.retailfarm.R
-import com.kai.retailfarm.firebase.FirebaseUtility
-import com.kai.retailfarm.login.listeners.LoginResultListener
-import com.kai.retailfarm.login.utility.ValidationUtility
+import com.kai.retailfarm.utility.firebase.FirebaseUtility
+import com.kai.retailfarm.login.listeners.FirebaseSuccessListener
+import com.kai.retailfarm.utility.validation.ValidationUtility
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_login.button1
 import kotlinx.android.synthetic.main.fragment_login.view.*
-import kotlinx.android.synthetic.main.fragment_login.view.button2
 import kotlinx.android.synthetic.main.fragment_login.view.username_edittext
-import kotlinx.android.synthetic.main.fragment_registration.*
 
 
 class LoginFragment : Fragment() {
@@ -38,7 +36,7 @@ class LoginFragment : Fragment() {
 
         button1.setOnClickListener {
             showLoadingAnimations()
-            FirebaseUtility.login( view.username_edittext.text.toString(), view.password_edittext.text.toString(), object : LoginResultListener {
+            FirebaseUtility.login( view.username_edittext.text.toString(), view.password_edittext.text.toString(), object : FirebaseSuccessListener {
                 override fun loginResultReceived( bSuccess: Boolean ) {
                     if( bSuccess )
                     {

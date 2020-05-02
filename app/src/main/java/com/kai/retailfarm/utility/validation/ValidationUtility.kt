@@ -1,4 +1,4 @@
-package com.kai.retailfarm.login.utility
+package com.kai.retailfarm.utility.validation
 
 class ValidationUtility {
     companion object{
