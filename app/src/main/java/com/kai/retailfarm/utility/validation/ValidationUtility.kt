@@ -52,11 +52,12 @@ class ValidationUtility {
         }
 
         fun nameValidation( name: String ):Boolean{
-            val pattern = Pattern.compile("^[a-zA-Z]{2,}$" )
-            if( pattern.matcher(name).matches() ) {
-                return true
-            }
-            return false
+//            val pattern = Pattern.compile("^[a-zA-Z]$" )
+//            if( pattern.matcher(name).matches() ) {
+//                return true
+//            }
+//            return false
+            return true
         }
 
         fun priceValidation( price: String ):Boolean{

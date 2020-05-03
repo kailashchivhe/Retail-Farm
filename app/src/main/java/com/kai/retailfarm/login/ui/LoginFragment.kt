@@ -44,6 +44,7 @@ class LoginFragment : Fragment() {
                     }
                     else
                     {
+                        stopLoadingAnimations()
                         Toast.makeText( requireContext(), "login Failed", Toast.LENGTH_SHORT ).show()
                     }
                 }
@@ -87,6 +88,12 @@ class LoginFragment : Fragment() {
     {
         view?.imgLargeIcon?.visibility = View.INVISIBLE
         view?.animation_view?.visibility = View.VISIBLE
+    }
+
+    private fun stopLoadingAnimations()
+    {
+        view?.imgLargeIcon?.visibility = View.VISIBLE
+        view?.animation_view?.visibility = View.INVISIBLE
     }
 
     private fun shouldEnableLoginButton()

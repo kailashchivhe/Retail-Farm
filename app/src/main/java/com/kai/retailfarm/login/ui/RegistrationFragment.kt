@@ -164,6 +164,7 @@ class RegistrationFragment : Fragment() {
                                     Navigation.findNavController(it).navigate(R.id.action_registrationFragment_to_userHomeFragment)
                                 }
                                 else{
+                                    stopLoadingAnimations()
                                     Toast.makeText( requireContext(), "Registration Failed", Toast.LENGTH_SHORT ).show()
                                 }
                             }
@@ -183,6 +184,12 @@ class RegistrationFragment : Fragment() {
     {
         view?.imgLargeIcon?.visibility = View.INVISIBLE
         view?.animation_view?.visibility = View.VISIBLE
+    }
+
+    private fun stopLoadingAnimations()
+    {
+        view?.imgLargeIcon?.visibility = View.VISIBLE
+        view?.animation_view?.visibility = View.INVISIBLE
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
